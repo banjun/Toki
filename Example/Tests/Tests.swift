@@ -4,46 +4,47 @@ import Quick
 import Nimble
 import Toki
 
-class TableOfContentsSpec: QuickSpec {
+
+extension WSDL2ObjCStubbable {
+    public var ns2: String { return "http://service.example.com/" }
+    public var useGzip: Bool { return false }
+}
+
+public protocol AuthenticationStubbable: WSDL2ObjCStubbable {}
+public extension AuthenticationStubbable {
+    public var endpoint: String { return "/authentication.ws" }
+}
+
+extension AuthenticationService_login: AuthenticationStubbable {}
+
+
+class AuthenticationSpec: QuickSpec {
     override func spec() {
-        describe("these will fail") {
+        describe("authentication") {
+            it("login success") {
+                self.stubSoap(AuthenticationService_login(), returnXMLs: ["success"])
 
-            it("can do maths") {
-                expect(1) == 2
+                let request = AuthenticationService_login()
+                request.arg0 = "user"
+                request.arg1 = "password"
+
+                let response = AuthenticationService.AuthenticationPortBinding().loginUsingParameters(request)
+                let part = response?.bodyParts.first as? AuthenticationService_loginResponse
+                let ret = part?.return_
+                expect(ret) == "success"
             }
 
-            it("can read") {
-                expect("number") == "string"
-            }
+            it("login failure") {
+                self.stubSoap(AuthenticationService_login(), returnXMLs: ["failure"])
 
-            it("will eventually fail") {
-                expect("time").toEventually( equal("done") )
-            }
-            
-            context("these will pass") {
+                let request = AuthenticationService_login()
+                request.arg0 = "user"
+                request.arg1 = "password"
 
-                it("can do maths") {
-                    expect(23) == 23
-                }
-
-                it("can read") {
-                    expect("🐮") == "🐮"
-                }
-
-                it("will eventually pass") {
-                    var time = "passing"
-
-                    dispatch_async(dispatch_get_main_queue()) {
-                        time = "done"
-                    }
-
-                    waitUntil { done in
-                        NSThread.sleepForTimeInterval(0.5)
-                        expect(time) == "done"
-
-                        done()
-                    }
-                }
+                let response = AuthenticationService.AuthenticationPortBinding().loginUsingParameters(request)
+                let part = response?.bodyParts.first as? AuthenticationService_loginResponse
+                let ret = part?.return_
+                expect(ret) == "failure"
             }
         }
     }

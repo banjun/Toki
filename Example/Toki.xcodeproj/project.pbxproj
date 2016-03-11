@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		AF4C562FDC0935F4CA4C5745 /* Pods_Toki_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20FE45ABF212C4BFA41E55E /* Pods_Toki_Tests.framework */; };
+		EA53AB901C92C6E6002025F1 /* AuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA53AB821C92C6E6002025F1 /* AuthenticationService.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA53AB911C92C6E6002025F1 /* NSDate+ISO8601Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EA53AB841C92C6E6002025F1 /* NSDate+ISO8601Parsing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA53AB921C92C6E6002025F1 /* NSDate+ISO8601Unparsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EA53AB861C92C6E6002025F1 /* NSDate+ISO8601Unparsing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA53AB941C92C6E6002025F1 /* USAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA53AB8A1C92C6E6002025F1 /* USAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA53AB951C92C6E6002025F1 /* USGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = EA53AB8C1C92C6E6002025F1 /* USGlobals.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA53AB961C92C6E6002025F1 /* xs.m in Sources */ = {isa = PBXBuildFile; fileRef = EA53AB8E1C92C6E6002025F1 /* xs.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA53AB981C92C8B6002025F1 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA53AB971C92C8B6002025F1 /* libxml2.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +27,20 @@
 		855630434667C725712F0DAC /* Pods-Toki_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Toki_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Toki_Tests/Pods-Toki_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A842D756325AEB357C80C227 /* Pods-Toki_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Toki_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Toki_Tests/Pods-Toki_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C20FE45ABF212C4BFA41E55E /* Pods_Toki_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Toki_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA53AB811C92C6E6002025F1 /* AuthenticationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationService.h; sourceTree = "<group>"; };
+		EA53AB821C92C6E6002025F1 /* AuthenticationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationService.m; sourceTree = "<group>"; };
+		EA53AB831C92C6E6002025F1 /* NSDate+ISO8601Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601Parsing.h"; sourceTree = "<group>"; };
+		EA53AB841C92C6E6002025F1 /* NSDate+ISO8601Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601Parsing.m"; sourceTree = "<group>"; };
+		EA53AB851C92C6E6002025F1 /* NSDate+ISO8601Unparsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601Unparsing.h"; sourceTree = "<group>"; };
+		EA53AB861C92C6E6002025F1 /* NSDate+ISO8601Unparsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601Unparsing.m"; sourceTree = "<group>"; };
+		EA53AB891C92C6E6002025F1 /* USAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USAdditions.h; sourceTree = "<group>"; };
+		EA53AB8A1C92C6E6002025F1 /* USAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USAdditions.m; sourceTree = "<group>"; };
+		EA53AB8B1C92C6E6002025F1 /* USGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USGlobals.h; sourceTree = "<group>"; };
+		EA53AB8C1C92C6E6002025F1 /* USGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USGlobals.m; sourceTree = "<group>"; };
+		EA53AB8D1C92C6E6002025F1 /* xs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xs.h; sourceTree = "<group>"; };
+		EA53AB8E1C92C6E6002025F1 /* xs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xs.m; sourceTree = "<group>"; };
+		EA53AB971C92C8B6002025F1 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		EA53AB991C92C98D002025F1 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		EB136BFD5377FD9715AD81F9 /* Toki.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Toki.podspec; path = ../Toki.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -28,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA53AB981C92C8B6002025F1 /* libxml2.tbd in Frameworks */,
 				AF4C562FDC0935F4CA4C5745 /* Pods_Toki_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,6 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				EA53AB991C92C98D002025F1 /* BridgingHeader.h */,
+				EA53AB7F1C92C6E6002025F1 /* generated */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -93,9 +117,29 @@
 		C8B461FE8989439FFEEA6BF4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA53AB971C92C8B6002025F1 /* libxml2.tbd */,
 				C20FE45ABF212C4BFA41E55E /* Pods_Toki_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA53AB7F1C92C6E6002025F1 /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				EA53AB811C92C6E6002025F1 /* AuthenticationService.h */,
+				EA53AB821C92C6E6002025F1 /* AuthenticationService.m */,
+				EA53AB831C92C6E6002025F1 /* NSDate+ISO8601Parsing.h */,
+				EA53AB841C92C6E6002025F1 /* NSDate+ISO8601Parsing.m */,
+				EA53AB851C92C6E6002025F1 /* NSDate+ISO8601Unparsing.h */,
+				EA53AB861C92C6E6002025F1 /* NSDate+ISO8601Unparsing.m */,
+				EA53AB891C92C6E6002025F1 /* USAdditions.h */,
+				EA53AB8A1C92C6E6002025F1 /* USAdditions.m */,
+				EA53AB8B1C92C6E6002025F1 /* USGlobals.h */,
+				EA53AB8C1C92C6E6002025F1 /* USGlobals.m */,
+				EA53AB8D1C92C6E6002025F1 /* xs.h */,
+				EA53AB8E1C92C6E6002025F1 /* xs.m */,
+			);
+			path = generated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,7 +262,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA53AB911C92C6E6002025F1 /* NSDate+ISO8601Parsing.m in Sources */,
+				EA53AB961C92C6E6002025F1 /* xs.m in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				EA53AB901C92C6E6002025F1 /* AuthenticationService.m in Sources */,
+				EA53AB921C92C6E6002025F1 /* NSDate+ISO8601Unparsing.m in Sources */,
+				EA53AB941C92C6E6002025F1 /* USAdditions.m in Sources */,
+				EA53AB951C92C6E6002025F1 /* USGlobals.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +312,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -300,6 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -323,6 +375,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Tests/BridgingHeader.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Toki_Example.app/Toki_Example";
 			};
 			name = Debug;
@@ -339,6 +392,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Tests/BridgingHeader.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Toki_Example.app/Toki_Example";
 			};
 			name = Release;

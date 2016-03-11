@@ -40,7 +40,7 @@ public func soap(endpoint: String, type: String, gunzip: Bool = false)(request:N
         let xml = String(data: data, encoding: NSUTF8StringEncoding) else { return false }
     let flattened = xml.componentsSeparatedByString("\n").map({$0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())}).joinWithSeparator("")
     return uri(endpoint)(request: request) &&
-        flattened.containsString("<soap:Body><\(type) xsi:type=\"\(type)\">")
+        flattened.containsString("<soap:Body><\(type)")
 }
 
 public func soap(responseName: String, returnXMLs: [String], ns2: String, status: Int = 200, headers: [String:String]? = nil, gzip: Bool = false)(request:NSURLRequest) -> Response {
