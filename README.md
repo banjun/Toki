@@ -12,7 +12,7 @@
 
 ## Usage
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+See [example testcases](https://github.com/banjun/Toki/blob/master/Example/Tests/Tests.swift).
 
 ## Requirements
 
