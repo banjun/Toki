@@ -15,5 +15,4 @@ Pod::Spec.new do |s|
   s.source_files = 'Pod/Classes/**/*'
   s.frameworks = 'XCTest'
   s.dependency 'Mockingjay', '~> 1.1'
-  s.dependency 'GZIP', '~> 1.1'
 end

@@ -1,5 +1,4 @@
 PODS:
-  - GZIP (1.1.1)
   - Mockingjay (1.1.1):
     - Mockingjay/Core (= 1.1.1)
     - Mockingjay/XCTest (= 1.1.1)
@@ -10,7 +9,6 @@ PODS:
   - Nimble (3.0.0)
   - Quick (0.8.0)
   - Toki (0.1.0):
-    - GZIP (~> 1.1)
     - Mockingjay (~> 1.1)
   - URITemplate (1.3.1)
 
@@ -24,11 +22,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GZIP: f8beb59597f651e6970a45b816508a9c6d700b77
   Mockingjay: 757f80abc947b5ec2918b1bb14f3066574720430
   Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
   Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
-  Toki: 0d30ca431464edf8f0da684f7191281f01aba73a
+  Toki: e654b01fbd1b6b1774bec22df0831b70790f6257
   URITemplate: 398a48d6559e23b77bd41176b675b017ad1fc959
 
 COCOAPODS: 0.39.0

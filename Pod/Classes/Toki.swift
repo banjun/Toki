@@ -5,15 +5,14 @@
 import Foundation
 import XCTest
 import Mockingjay
-import GZIP
 
 
 public extension XCTest {
-    public func stubSoap<T: WSDL2ObjCStubbable>(service: T, returnXMLs: [String], status: Int = 200, headers: [String:String]? = nil) {
+    public func stubSoap<T: WSDL2ObjCStubbable>(service: T, returnXMLs: [String], status: Int = 200, headers: [String:String]? = nil, requestDecompressor: NSData -> NSData = {$0}, responseCompressor: NSData -> NSData = {$0}) {
         let type = service.nsPrefix() + ":" + service.method
         let responseName = service.method + "Response"
-        stub(soap(service.endpoint, type: type, gunzip: service.useGzip),
-            builder: soap(responseName, returnXMLs: returnXMLs, ns2: service.ns2, status: status, headers: headers, gzip: service.useGzip))
+        stub(soap(service.endpoint, type: type, dataModifier: requestDecompressor),
+            builder: soap(responseName, returnXMLs: returnXMLs, ns2: service.ns2, status: status, headers: headers, dataModifier: responseCompressor))
     }
 }
 
@@ -23,7 +22,6 @@ public protocol WSDL2ObjCStubbable {
     func nsPrefix() -> String!
     var ns2: String { get }
     var method: String { get }
-    var useGzip: Bool { get }
 }
 
 public extension WSDL2ObjCStubbable {
@@ -35,18 +33,18 @@ public extension WSDL2ObjCStubbable {
 }
 
 
-public func soap(endpoint: String, type: String, gunzip: Bool = false)(request:NSURLRequest) -> Bool {
-    guard let data = request.HTTPBody.flatMap({gunzip ? $0.gunzippedData() : $0}),
+public func soap(endpoint: String, type: String, dataModifier: (NSData -> NSData) = {$0})(request:NSURLRequest) -> Bool {
+    guard let data = request.HTTPBody.map(dataModifier),
         let xml = String(data: data, encoding: NSUTF8StringEncoding) else { return false }
     let flattened = xml.componentsSeparatedByString("\n").map({$0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())}).joinWithSeparator("")
     return uri(endpoint)(request: request) &&
-        flattened.containsString("<soap:Body><\(type)")
+        (flattened.containsString("<soap:Body><\(type) ") || flattened.containsString("<soap:Body><\(type)>"))
 }
 
-public func soap(responseName: String, returnXMLs: [String], ns2: String, status: Int = 200, headers: [String:String]? = nil, gzip: Bool = false)(request:NSURLRequest) -> Response {
+public func soap(responseName: String, returnXMLs: [String], ns2: String, dataModifier: (NSData -> NSData) = {$0}, status: Int = 200, headers: [String:String]? = nil)(request:NSURLRequest) -> Response {
     let body = "<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Body><ns2:\(responseName) xmlns:ns2=\"\(ns2)\">\(returnXMLs.map({"<return>\($0)</return>"}).joinWithSeparator(""))</ns2:\(responseName)></S:Body></S:Envelope>"
     guard let data = body.dataUsingEncoding(NSUTF8StringEncoding) else {
         return .Failure(NSError(domain: "", code: 0, userInfo: nil))
     }
-    return http(status, headers: headers, data: (gzip ? data.gzippedData() : data))(request: request)
+    return http(status, headers: headers, data: dataModifier(data))(request: request)
 }

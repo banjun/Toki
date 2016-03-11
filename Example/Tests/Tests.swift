@@ -7,7 +7,6 @@ import Toki
 
 extension WSDL2ObjCStubbable {
     public var ns2: String { return "http://service.example.com/" }
-    public var useGzip: Bool { return false }
 }
 
 public protocol AuthenticationStubbable: WSDL2ObjCStubbable {}
