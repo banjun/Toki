@@ -5,6 +5,7 @@
  
  ![Toki](misc/Ibis_KIN.JPG)
 
+> An image of stu~~bb~~ffed Toki
  
  Toki is one of the Threatened Birds in Japan.
 
