@@ -8,10 +8,10 @@ import Mockingjay
 
 
 public extension XCTest {
-    public func stubSoap<T: WSDL2ObjCStubbable>(service: T, returnXMLs: [String], status: Int = 200, headers: [String:String]? = nil, requestDecompressor: NSData -> NSData = {$0}, responseCompressor: NSData -> NSData = {$0}) {
+    public func stubSoap<T: WSDL2ObjCStubbable>(service: T, returnXMLs: [String], status: Int = 200, headers: [String:String]? = nil, requestDecompressor: NSData -> NSData = {$0}, responseCompressor: NSData -> NSData = {$0}) -> Stub {
         let type = service.nsPrefix() + ":" + service.method
         let responseName = service.method + "Response"
-        stub(soap(service.endpoint, type: type, dataModifier: requestDecompressor),
+        return stub(soap(service.endpoint, type: type, dataModifier: requestDecompressor),
             builder: soap(responseName, returnXMLs: returnXMLs, ns2: service.ns2, status: status, headers: headers, dataModifier: responseCompressor))
     }
 }
