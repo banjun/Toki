@@ -8,10 +8,10 @@ import Mockingjay
 
 
 public extension XCTest {
-    public func stubSoap<T: WSDL2ObjCStubbable>(service: T, returnXMLs: [String], status: Int = 200, headers: [String:String]? = nil, requestDecompressor: NSData -> NSData = {$0}, responseCompressor: NSData -> NSData = {$0}) -> Stub {
+    public func stubSoap<T: WSDL2ObjCStubbable>(service: T, matchXML: (String -> Bool) = {_ in true}, returnXMLs: [String], status: Int = 200, headers: [String:String]? = nil, requestDecompressor: NSData -> NSData = {$0}, responseCompressor: NSData -> NSData = {$0}) -> Stub {
         let type = service.nsPrefix() + ":" + service.method
         let responseName = service.method + "Response"
-        return stub(soap(service.endpoint, type: type, dataModifier: requestDecompressor),
+        return stub(soap(service.endpoint, type: type, matchXML: matchXML, dataModifier: requestDecompressor),
             builder: soap(responseName, returnXMLs: returnXMLs, ns2: service.ns2, status: status, headers: headers, dataModifier: responseCompressor))
     }
 }
@@ -33,11 +33,12 @@ public extension WSDL2ObjCStubbable {
 }
 
 
-public func soap(endpoint: String, type: String, dataModifier: (NSData -> NSData) = {$0})(request:NSURLRequest) -> Bool {
+public func soap(endpoint: String, type: String, matchXML: (String -> Bool), dataModifier: (NSData -> NSData) = {$0})(request:NSURLRequest) -> Bool {
     guard let data = request.HTTPBody.map(dataModifier),
         let xml = String(data: data, encoding: NSUTF8StringEncoding) else { return false }
     let flattened = xml.componentsSeparatedByString("\n").map({$0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())}).joinWithSeparator("")
     return uri(endpoint)(request: request) &&
+        matchXML(flattened) &&
         (flattened.containsString("<soap:Body><\(type) ") || flattened.containsString("<soap:Body><\(type)>"))
 }
 
