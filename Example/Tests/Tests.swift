@@ -27,7 +27,7 @@ class AuthenticationSpec: QuickSpec {
                 request.arg0 = "user"
                 request.arg1 = "password"
 
-                let response = AuthenticationService.AuthenticationPortBinding().loginUsingParameters(request)
+                let response = AuthenticationService.authenticationPortBinding().login(usingParameters: request)
                 let part = response?.bodyParts.first as? AuthenticationService_loginResponse
                 let ret = part?.return_
                 expect(ret) == "success"
@@ -40,7 +40,7 @@ class AuthenticationSpec: QuickSpec {
                 request.arg0 = "user"
                 request.arg1 = "password"
 
-                let response = AuthenticationService.AuthenticationPortBinding().loginUsingParameters(request)
+                let response = AuthenticationService.authenticationPortBinding().login(usingParameters: request)
                 let part = response?.bodyParts.first as? AuthenticationService_loginResponse
                 let ret = part?.return_
                 expect(ret) == "failure"

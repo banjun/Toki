@@ -8,11 +8,13 @@ import Mockingjay
 
 
 public extension XCTest {
-    public func stubSoap<T: WSDL2ObjCStubbable>(service: T, matchXML: (String -> Bool) = {_ in true}, returnXMLs: [String], status: Int = 200, headers: [String:String]? = nil, requestDecompressor: NSData -> NSData = {$0}, responseCompressor: NSData -> NSData = {$0}) -> Stub {
+    @discardableResult
+    public func stubSoap<T: WSDL2ObjCStubbable>(_ service: T, matchXML: @escaping (String) -> Bool = {_ in true}, returnXMLs: [String], status: Int = 200, headers: [String:String]? = nil, requestDecompressor: @escaping (Data) -> Data = {$0}, responseCompressor: @escaping (Data) -> Data = {$0}) -> Stub {
         let type = service.nsPrefix() + ":" + service.method
         let responseName = service.method + "Response"
-        return stub(soap(service.endpoint, type: type, matchXML: matchXML, dataModifier: requestDecompressor),
-            builder: soap(responseName, returnXMLs: returnXMLs, ns2: service.ns2, status: status, headers: headers, dataModifier: responseCompressor))
+        return stub(
+            soap(service.endpoint, type: type, matchXML: matchXML, dataModifier: requestDecompressor),
+            soap(responseName, returnXMLs: returnXMLs, ns2: service.ns2, dataModifier: responseCompressor, status: status, headers: headers))
     }
 }
 
@@ -27,25 +29,29 @@ public protocol WSDL2ObjCStubbable {
 public extension WSDL2ObjCStubbable {
     var method: String {
         let prefix = nsPrefix() + "_"
-        let typeName = "\(self.dynamicType)";
-        return typeName.stringByReplacingOccurrencesOfString(prefix, withString: "", options: [], range: Range(start: prefix.startIndex, end: prefix.endIndex))
+        let typeName = "\(type(of: self))";
+        return (typeName as NSString).replacingOccurrences(of: prefix, with: "", options: [], range: NSRange(location: 0, length: (prefix as NSString).length))
     }
 }
 
 
-public func soap(endpoint: String, type: String, matchXML: (String -> Bool), dataModifier: (NSData -> NSData) = {$0})(request:NSURLRequest) -> Bool {
-    guard let data = request.HTTPBody.map(dataModifier),
-        let xml = String(data: data, encoding: NSUTF8StringEncoding) else { return false }
-    let flattened = xml.componentsSeparatedByString("\n").map({$0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())}).joinWithSeparator("")
-    return uri(endpoint)(request: request) &&
-        matchXML(flattened) &&
-        (flattened.containsString("<soap:Body><\(type) ") || flattened.containsString("<soap:Body><\(type)>"))
+public func soap(_ endpoint: String, type: String, matchXML: @escaping (String) -> Bool, dataModifier: @escaping (Data) -> Data = {$0}) -> (URLRequest) -> Bool {
+    return { request in
+        guard let data = request.httpBody.map(dataModifier),
+            let xml = String(data: data, encoding: .utf8) else { return false }
+        let flattened = xml.components(separatedBy: "\n").map({$0.trimmingCharacters(in: .whitespacesAndNewlines)}).joined(separator: "")
+        return uri(endpoint)(request) &&
+            matchXML(flattened) &&
+            (flattened.contains("<soap:Body><\(type) ") || flattened.contains("<soap:Body><\(type)>"))
+    }
 }
 
-public func soap(responseName: String, returnXMLs: [String], ns2: String, dataModifier: (NSData -> NSData) = {$0}, status: Int = 200, headers: [String:String]? = nil)(request:NSURLRequest) -> Response {
-    let body = "<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Body><ns2:\(responseName) xmlns:ns2=\"\(ns2)\">\(returnXMLs.map({"<return>\($0)</return>"}).joinWithSeparator(""))</ns2:\(responseName)></S:Body></S:Envelope>"
-    guard let data = body.dataUsingEncoding(NSUTF8StringEncoding) else {
-        return .Failure(NSError(domain: "", code: 0, userInfo: nil))
+public func soap(_ responseName: String, returnXMLs: [String], ns2: String, dataModifier: @escaping (Data) -> Data = {$0}, status: Int = 200, headers: [String:String]? = nil) -> (URLRequest) -> Response {
+    return { request in
+        let body = "<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Body><ns2:\(responseName) xmlns:ns2=\"\(ns2)\">\(returnXMLs.map({"<return>\($0)</return>"}).joined(separator: ""))</ns2:\(responseName)></S:Body></S:Envelope>"
+        guard let data = body.data(using: .utf8) else {
+            return .failure(NSError(domain: "", code: 0, userInfo: nil))
+        }
+        return http(status, headers: headers, download: .content(dataModifier(data)))(request)
     }
-    return http(status, headers: headers, data: dataModifier(data))(request: request)
 }

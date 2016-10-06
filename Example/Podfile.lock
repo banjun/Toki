@@ -1,31 +1,42 @@
 PODS:
-  - Mockingjay (1.1.1):
-    - Mockingjay/Core (= 1.1.1)
-    - Mockingjay/XCTest (= 1.1.1)
-  - Mockingjay/Core (1.1.1):
-    - URITemplate (~> 1.3)
-  - Mockingjay/XCTest (1.1.1):
+  - Mockingjay (1.3.0):
+    - Mockingjay/Core (= 1.3.0)
+    - Mockingjay/XCTest (= 1.3.0)
+  - Mockingjay/Core (1.3.0):
+    - URITemplate (~> 2.0)
+  - Mockingjay/XCTest (1.3.0):
     - Mockingjay/Core
-  - Nimble (3.0.0)
-  - Quick (0.8.0)
-  - Toki (0.1.0):
-    - Mockingjay (~> 1.1)
-  - URITemplate (1.3.1)
+  - Nimble (5.0.0)
+  - Quick (0.10.0)
+  - Toki (0.4.0):
+    - Mockingjay (>= 1.3)
+  - URITemplate (2.0.0)
 
 DEPENDENCIES:
-  - Nimble (= 3.0.0)
-  - Quick (~> 0.8.0)
+  - Mockingjay (from `https://github.com/shams-ahmed/Mockingjay.git`, branch `bug/podspec-swift`)
+  - Nimble
+  - Quick
   - Toki (from `../`)
 
 EXTERNAL SOURCES:
+  Mockingjay:
+    :branch: bug/podspec-swift
+    :git: https://github.com/shams-ahmed/Mockingjay.git
   Toki:
     :path: "../"
 
-SPEC CHECKSUMS:
-  Mockingjay: 757f80abc947b5ec2918b1bb14f3066574720430
-  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
-  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
-  Toki: e654b01fbd1b6b1774bec22df0831b70790f6257
-  URITemplate: 398a48d6559e23b77bd41176b675b017ad1fc959
+CHECKOUT OPTIONS:
+  Mockingjay:
+    :commit: b3b553b155f8b8c852603565de5ff3cbbe06ce1d
+    :git: https://github.com/shams-ahmed/Mockingjay.git
 
-COCOAPODS: 0.39.0
+SPEC CHECKSUMS:
+  Mockingjay: 31208eb6cb4d20324cc845c0ca2837232d48038b
+  Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
+  Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
+  Toki: 799a5cd4d5e62ea7b8c5d5320955dc59bdeac4f4
+  URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
+
+PODFILE CHECKSUM: 811959f970efcb23764ff1a66ac46cb434f1737f
+
+COCOAPODS: 1.1.0.rc.2
