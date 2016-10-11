@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'Toki_Tests' do
   pod 'Toki', :path => '../'
-  pod 'Mockingjay', git: 'https://github.com/shams-ahmed/Mockingjay.git', branch: 'bug/podspec-swift'
+  pod 'Mockingjay', git: 'https://github.com/kylef/Mockingjay.git', branch: 'master'
 
   pod 'Quick'
   pod 'Nimble'

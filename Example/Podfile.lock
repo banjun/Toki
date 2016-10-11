@@ -13,22 +13,22 @@ PODS:
   - URITemplate (2.0.0)
 
 DEPENDENCIES:
-  - Mockingjay (from `https://github.com/shams-ahmed/Mockingjay.git`, branch `bug/podspec-swift`)
+  - Mockingjay (from `https://github.com/kylef/Mockingjay.git`, branch `master`)
   - Nimble
   - Quick
   - Toki (from `../`)
 
 EXTERNAL SOURCES:
   Mockingjay:
-    :branch: bug/podspec-swift
-    :git: https://github.com/shams-ahmed/Mockingjay.git
+    :branch: master
+    :git: https://github.com/kylef/Mockingjay.git
   Toki:
     :path: "../"
 
 CHECKOUT OPTIONS:
   Mockingjay:
-    :commit: b3b553b155f8b8c852603565de5ff3cbbe06ce1d
-    :git: https://github.com/shams-ahmed/Mockingjay.git
+    :commit: d29a7c68c7c5947cc7602b282cdc635b5b90e05a
+    :git: https://github.com/kylef/Mockingjay.git
 
 SPEC CHECKSUMS:
   Mockingjay: 31208eb6cb4d20324cc845c0ca2837232d48038b
@@ -37,6 +37,6 @@ SPEC CHECKSUMS:
   Toki: 799a5cd4d5e62ea7b8c5d5320955dc59bdeac4f4
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: 811959f970efcb23764ff1a66ac46cb434f1737f
+PODFILE CHECKSUM: 50a0e375f0ea543c2b4c7ccdaf5bfb081b20f2a0
 
 COCOAPODS: 1.1.0.rc.2
