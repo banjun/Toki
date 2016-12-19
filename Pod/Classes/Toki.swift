@@ -16,10 +16,10 @@ public protocol WSDLServiceStubbable {
 // extension for stub request and response in WSDLService
 public extension XCTest {
     @discardableResult
-    func stub<S: WSDLServiceStubbable, T: XSDType, R: XSDType>(_ service: S, _ type: T.Type, _ response: R) -> Stub {
+    func stub<S: WSDLServiceStubbable, T: XSDType, R: XSDType>(_ service: S, _ type: T.Type, _ response: R, requestDataModifier: @escaping (Data) -> Data = {$0}, responseDataModifier: @escaping (Data) -> Data = {$0}) -> Stub {
         return stub(
-            service.stubMatcher(type),
-            service.stubBuilder(response))
+            service.stubMatcher(type, dataModifier: requestDataModifier),
+            service.stubBuilder(response, dataModifier: responseDataModifier))
     }
 }
 
