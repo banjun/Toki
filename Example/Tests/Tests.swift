@@ -1,49 +1,40 @@
-// https://github.com/Quick/Quick
-
 import Quick
 import Nimble
 import Toki
+import WSDL2Swift
+import AEXML
+// @testable import App
 
-
-extension WSDL2ObjCStubbable {
-    public var ns2: String { return "http://service.example.com/" }
+extension TempConvert: WSDLServiceStubbable {}
+extension WSDLService {
+    public func soapRequest<R : XSDType>(_ response: R, _ tns: String) -> AEXMLDocument {
+        return response.soapRequest(tns)
+    }
 }
 
-public protocol AuthenticationStubbable: WSDL2ObjCStubbable {}
-public extension AuthenticationStubbable {
-    public var endpoint: String { return "/authentication.ws" }
-}
+class TempConvertSpec: QuickSpec {
+    let service = TempConvert(endpoint: "/")
 
-extension AuthenticationService_login: AuthenticationStubbable {}
-
-
-class AuthenticationSpec: QuickSpec {
     override func spec() {
-        describe("authentication") {
-            it("login success") {
-                self.stubSoap(AuthenticationService_login(), returnXMLs: ["success"])
+        describe("TempConvert") {
+            it("C to F") {
+                self.stub(self.service,
+                          TempConvert_CelsiusToFahrenheit.self,
+                          TempConvert_CelsiusToFahrenheitResponse(CelsiusToFahrenheitResult: "999"))
 
-                let request = AuthenticationService_login()
-                request.arg0 = "user"
-                request.arg1 = "password"
-
-                let response = AuthenticationService.AuthenticationPortBinding().loginUsingParameters(request)
-                let part = response?.bodyParts.first as? AuthenticationService_loginResponse
-                let ret = part?.return_
-                expect(ret) == "success"
+                let future = self.service.request(TempConvert_CelsiusToFahrenheit(Celsius: "30"))
+                expect(future.value).toEventuallyNot(beNil())
+                expect(future.value?.CelsiusToFahrenheitResult).toEventually(equal("999"))
             }
 
-            it("login failure") {
-                self.stubSoap(AuthenticationService_login(), returnXMLs: ["failure"])
+            it("F to C") {
+                self.stub(self.service,
+                          TempConvert_FahrenheitToCelsius.self,
+                          TempConvert_FahrenheitToCelsiusResponse(FahrenheitToCelsiusResult: "1234"))
 
-                let request = AuthenticationService_login()
-                request.arg0 = "user"
-                request.arg1 = "password"
-
-                let response = AuthenticationService.AuthenticationPortBinding().loginUsingParameters(request)
-                let part = response?.bodyParts.first as? AuthenticationService_loginResponse
-                let ret = part?.return_
-                expect(ret) == "failure"
+                let future = self.service.request(TempConvert_FahrenheitToCelsius(Fahrenheit: "80"))
+                expect(future.value).toEventuallyNot(beNil())
+                expect(future.value?.FahrenheitToCelsiusResult).toEventually(equal("1234"))
             }
         }
     }
