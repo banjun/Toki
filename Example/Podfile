@@ -1,10 +1,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-
 target 'Toki_Tests' do
   pod 'Toki', :path => '../'
-  pod 'Mockingjay', git: 'https://github.com/kylef/Mockingjay.git', branch: 'master'
 
   pod 'Quick'
   pod 'Nimble'
