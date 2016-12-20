@@ -33,6 +33,10 @@ it, simply add the following line to your Podfile:
 pod "Toki"
 ```
 
+## Architecture
+
+![flow](misc/flow.png)
+
 ## Author
 
 @banjun

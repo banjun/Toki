@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="mermaid.min.js"></script>
+    <link rel="stylesheet" href="mermaid.css" />
+</head>
+<body>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <div class="mermaid">
+graph TB
+    xml[WSDL.xml]
+    exec["WSDL2Swift (executable)"]
+    app((App))
+    test((Test))
+    pod(pod WSDL2Swift)
+    toki(pod Toki)
+
+    subgraph App
+        app -- contain --> WSDL.swift
+    end
+
+    xml --> exec
+    exec -- generate --> WSDL.swift
+
+    WSDL.swift -. import .-> pod
+    toki -. import .-> pod
+    test -. import .-> app
+    test -. import .-> toki
+    </div>
+</body>
+</html>
+
