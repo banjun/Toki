@@ -21,6 +21,13 @@ public extension XCTest {
             service.stubMatcher(type, dataModifier: requestDataModifier),
             service.stubBuilder(response, dataModifier: responseDataModifier))
     }
+
+    @discardableResult
+    func stub<S: WSDLServiceStubbable, T: XSDType & ExpressibleByXML, R: XSDType>(_ service: S, requestMatcher: @escaping (T) -> Bool, _ response: R, requestDataModifier: @escaping (Data) -> Data = {$0}, responseDataModifier: @escaping (Data) -> Data = {$0}) -> Stub {
+        return stub(
+            service.stubMatcher(requestMatcher: requestMatcher, dataModifier: requestDataModifier),
+            service.stubBuilder(response, dataModifier: responseDataModifier))
+    }
 }
 
 private let optionsForNamespaceRemoving: AEXMLOptions = {
@@ -42,6 +49,18 @@ extension WSDLServiceStubbable {
 
             return (uri(self.endpoint + self.path)(request) &&
                 xml["Envelope"]["Body"][typeSuffix].first != nil)
+        }
+    }
+
+    func stubMatcher<T: XSDType & ExpressibleByXML>(requestMatcher: @escaping (T) -> Bool, dataModifier: @escaping (Data) -> Data = {$0}) -> Matcher {
+        return { request in
+            guard uri(self.endpoint + self.path)(request) else { return false }
+            let body = (request as NSURLRequest).ohhttpStubs_HTTPBody()
+            guard let data = body.map(dataModifier),
+                let xml = try? AEXMLDocument(xml: data),
+                let soapMessage = SOAPMessage(xml: xml, targetNamespace: self.targetNamespace),
+                let req = ((try? T(soapMessage: soapMessage)).flatMap {$0}) else { return false }
+            return requestMatcher(req)
         }
     }
 
