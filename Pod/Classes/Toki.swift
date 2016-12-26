@@ -54,7 +54,8 @@ extension WSDLServiceStubbable {
 
     func stubMatcher<T: XSDType & ExpressibleByXML>(requestMatcher: @escaping (T) -> Bool, dataModifier: @escaping (Data) -> Data = {$0}) -> Matcher {
         return { request in
-            guard uri(self.endpoint + self.path)(request) else { return false }
+            guard self.stubMatcher(T.self, dataModifier: dataModifier)(request) else { return false }
+
             let body = (request as NSURLRequest).ohhttpStubs_HTTPBody()
             guard let data = body.map(dataModifier),
                 let xml = try? AEXMLDocument(xml: data),
