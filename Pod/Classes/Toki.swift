@@ -3,6 +3,7 @@ import Mockingjay
 import OHHTTPStubs // see https://github.com/AliSoftware/OHHTTPStubs/wiki/Testing-for-the-request-body-in-your-stubs
 import AEXML
 import WSDL2Swift
+import Fuzi
 
 // all WSDLServices in test should conform to this protocol, declared in the test target
 public protocol WSDLServiceStubbable {
@@ -58,9 +59,9 @@ extension WSDLServiceStubbable {
 
             let body = (request as NSURLRequest).ohhttpStubs_HTTPBody()
             guard let data = body.map(dataModifier),
-                let xml = try? AEXMLDocument(xml: data),
+                let xml = try? Fuzi.XMLDocument(data: data),
                 let soapMessage = SOAPMessage(xml: xml, targetNamespace: self.targetNamespace),
-                let req = ((try? T(soapMessage: soapMessage)).flatMap {$0}) else { return false }
+                let req = (T(soapMessage: soapMessage).flatMap {$0}) else { return false }
             return requestMatcher(req)
         }
     }

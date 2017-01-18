@@ -2,6 +2,7 @@ PODS:
   - AEXML (4.0.1)
   - BrightFutures (5.1.0):
     - Result (~> 3.0)
+  - Fuzi (1.0.1)
   - ISO8601 (0.6.0)
   - Mockingjay (2.0.0):
     - Mockingjay/Core (= 2.0.0)
@@ -16,15 +17,17 @@ PODS:
     - OHHTTPStubs/Core
   - Quick (1.0.0)
   - Result (3.1.0)
-  - Toki (0.5.0):
+  - Toki (0.8.1):
     - AEXML
+    - Fuzi
     - Mockingjay (~> 2.0)
     - OHHTTPStubs/NSURLSession (~> 5.2)
-    - WSDL2Swift (>= 0.3)
+    - WSDL2Swift (>= 0.7)
   - URITemplate (2.0.0)
-  - WSDL2Swift (0.3.0):
+  - WSDL2Swift (0.7.0):
     - AEXML
     - BrightFutures
+    - Fuzi
     - ISO8601
 
 DEPENDENCIES:
@@ -39,15 +42,16 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AEXML: 905e50474c0a261d335aa8be4ee32d22d69b6fd5
   BrightFutures: 62aafb1a63520eda91c9286bf4be33e58e043938
+  Fuzi: 851403654bac55675aaeed815d0c8a1d3e3d3e8b
   ISO8601: d3ea3ba9b752820cf92c6b47a9ee327e9f0e13fc
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   OHHTTPStubs: e238cd5b66d8efa51c861db45895de8fe079f4a7
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
-  Toki: f95c77a4174587e400bdd73b8a003acec2a2b89f
+  Toki: c2f0d9f37b943fee5ee398223d7ea90d76b3a8fb
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
-  WSDL2Swift: b636315f68b2429e469565cfaff7ba8f4d2aecc1
+  WSDL2Swift: 50852852ba63e77fa22e722943beaeaec0f9c8b7
 
 PODFILE CHECKSUM: 13986ff633f5dbe11f21ea6291159e1ed3d4912c
 
