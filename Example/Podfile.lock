@@ -12,16 +12,16 @@ PODS:
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
   - Nimble (7.0.2)
-  - OHHTTPStubs/Core (5.2.3)
-  - OHHTTPStubs/NSURLSession (5.2.3):
+  - OHHTTPStubs/Core (6.1.0)
+  - OHHTTPStubs/NSURLSession (6.1.0):
     - OHHTTPStubs/Core
   - Quick (1.2.0)
   - Result (3.2.4)
-  - Toki (0.10.0):
+  - Toki (0.12.0):
     - AEXML
     - Fuzi
     - Mockingjay (~> 2.0)
-    - OHHTTPStubs/NSURLSession (~> 5.2)
+    - OHHTTPStubs/NSURLSession (~> 6.1)
     - WSDL2Swift (>= 0.7)
   - URITemplate (2.0.3)
   - WSDL2Swift (0.8.0):
@@ -46,10 +46,10 @@ SPEC CHECKSUMS:
   ISO8601: d3ea3ba9b752820cf92c6b47a9ee327e9f0e13fc
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
-  OHHTTPStubs: e238cd5b66d8efa51c861db45895de8fe079f4a7
+  OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  Toki: e02758c248f5dbbfb53f71a88da10d4f17d9d580
+  Toki: 34dee16012ad6927c9dbc881e6d11b8479ca76c0
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
   WSDL2Swift: 79e88684ce544126e3f07ad2a44c75b483c11c14
 
