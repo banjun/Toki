@@ -20,5 +20,6 @@ Pod::Spec.new do |s|
   s.dependency 'AEXML'
   s.dependency 'WSDL2Swift', '>= 0.7'
   s.dependency 'Fuzi'
-  s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
+  s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO',
+                            'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'} # for importing Fuzi with Swift 4
 end
