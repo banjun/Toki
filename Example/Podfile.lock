@@ -1,30 +1,30 @@
 PODS:
-  - AEXML (4.1.0)
-  - BrightFutures (6.0.0):
+  - AEXML (4.5.0)
+  - BrightFutures (6.0.1):
     - Result (~> 3.2.4)
-  - Fuzi (2.0.1)
+  - Fuzi (2.2.1)
   - ISO8601 (0.6.0)
-  - Mockingjay (2.0.1):
-    - Mockingjay/Core (= 2.0.1)
-    - Mockingjay/XCTest (= 2.0.1)
-  - Mockingjay/Core (2.0.1):
-    - URITemplate (~> 2.0)
-  - Mockingjay/XCTest (2.0.1):
+  - Mockingjay (3.0.0-alpha.1):
+    - Mockingjay/Core (= 3.0.0-alpha.1)
+    - Mockingjay/XCTest (= 3.0.0-alpha.1)
+  - Mockingjay/Core (3.0.0-alpha.1):
+    - URITemplate (~> 3.0)
+  - Mockingjay/XCTest (3.0.0-alpha.1):
     - Mockingjay/Core
-  - Nimble (7.0.2)
-  - OHHTTPStubs/Core (6.1.0)
-  - OHHTTPStubs/NSURLSession (6.1.0):
+  - Nimble (8.0.9)
+  - OHHTTPStubs/Core (9.0.0)
+  - OHHTTPStubs/NSURLSession (9.0.0):
     - OHHTTPStubs/Core
-  - Quick (1.2.0)
+  - Quick (2.2.0)
   - Result (3.2.4)
   - Toki (0.12.0):
     - AEXML
     - Fuzi
-    - Mockingjay (~> 2.0)
-    - OHHTTPStubs/NSURLSession (~> 6.1)
+    - Mockingjay (>= 3.0.0-alpha.1)
+    - OHHTTPStubs/NSURLSession (~> 9.0)
     - WSDL2Swift (>= 0.7)
-  - URITemplate (2.0.3)
-  - WSDL2Swift (0.8.0):
+  - URITemplate (3.0.0)
+  - WSDL2Swift (0.9.0):
     - AEXML
     - BrightFutures (< 7.0.0, >= 6.0.0-beta.1)
     - Fuzi (~> 2.0)
@@ -35,24 +35,38 @@ DEPENDENCIES:
   - Quick
   - Toki (from `../`)
 
+SPEC REPOS:
+  trunk:
+    - AEXML
+    - BrightFutures
+    - Fuzi
+    - ISO8601
+    - Mockingjay
+    - Nimble
+    - OHHTTPStubs
+    - Quick
+    - Result
+    - URITemplate
+    - WSDL2Swift
+
 EXTERNAL SOURCES:
   Toki:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  AEXML: 647fbb051280f3fb38a1a7caa62b0344055a851c
-  BrightFutures: 9e7604f511aed9f0d6a49b04ac9b3fca6b117758
-  Fuzi: f64983dea705491d3aedd32351247a09523e7efd
+  AEXML: 0e8f1d874fa033ca6b3909452a8bc362faad46e6
+  BrightFutures: 9c03dab79e73ffe504b7bafc15c5bfdaeee54890
+  Fuzi: 3e6c73359d84a92376763abbaf8ced4d49c0f4ea
   ISO8601: d3ea3ba9b752820cf92c6b47a9ee327e9f0e13fc
-  Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
-  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
-  OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
-  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
+  Nimble: 98b888285a615fd34f20e61753cf58ea1402bde4
+  OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
+  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  Toki: 34dee16012ad6927c9dbc881e6d11b8479ca76c0
-  URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
-  WSDL2Swift: 79e88684ce544126e3f07ad2a44c75b483c11c14
+  Toki: b0a48ebabf6892ba543e6a531c07181b66b951ea
+  URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
+  WSDL2Swift: 1aaa3d2fcb01e893e4d8e9f503d6b9214f1efb87
 
-PODFILE CHECKSUM: ae018381b97cd7d3988c8330b8ed69418971a125
+PODFILE CHECKSUM: 8fc6235e97b66dba0fce8b9f1d68524341568650
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.9.2
