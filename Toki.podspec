@@ -12,14 +12,14 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/banjun/Toki.git", :tag => s.version.to_s }
   s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.11'
+  s.swift_versions = ['5.0']
   s.requires_arc = true
   s.source_files = 'Pod/Classes/**/*'
   s.frameworks = 'XCTest'
-  s.dependency 'Mockingjay', '~> 2.0'
-  s.dependency 'OHHTTPStubs/NSURLSession', '~> 6.1'
+  s.dependency 'Mockingjay', '>= 3.0.0-alpha.1'
+  s.dependency 'OHHTTPStubs/NSURLSession', '~> 9.0'
   s.dependency 'AEXML'
   s.dependency 'WSDL2Swift', '>= 0.7'
   s.dependency 'Fuzi'
-  s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO',
-                            'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'} # for importing Fuzi with Swift 4
+  s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
 end
